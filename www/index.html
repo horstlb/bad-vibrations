@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bad Vibrations Prototype</title>
+
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
+<script type="text/javascript" charset="utf-8"
+	src="js/jqplot/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="js/jqplot/jquery.jqplot.js"></script>
+
+<script type="text/javascript" charset="utf-8"
+	src="js/bad-vibrations.js"></script>
+
+<script type="text/javascript" charset="utf-8"
+	src="js/jquery.flexslider-min.js"></script>
+
+<link rel="stylesheet" href="css/bad-vibrations.css">
+
+<link rel="stylesheet" href="js/jqplot/jquery.jqplot.min.css">
+
+</head>
+<body onload="onLoad()">
+	<div class="mainContainer">
+
+		<div class="homeContainer toggle">
+			<div class="naviContainer">
+				<div class="naviSettings">
+					<img src="./img/cog.png" class="naviButton"
+						onClick="loadSettings()">
+				</div>
+				<div class="naviStat">
+					<img src="./img/stats.png" class="naviButton" onClick="loadStat()">
+				</div>
+			</div>
+			<div class="selectSlider">
+<div class="flexslider">
+  <ul class="slides">
+    <li>
+      Radl
+    </li>
+    <li>
+      Auto
+    </li>
+    <li>
+      Radl 2
+    </li>
+    <li>
+      Add Item
+    </li>
+  </ul>
+</div>			
+			</div>
+			<button onClick="startEngine()" class="startButton">Start</button>
+		</div>
+		<div class="statContainer toggle" style="display: none">
+			<img src="./img/back.png" class="naviButton back"
+				onClick="loadHome()"> Ich bin der Stat Container
+		</div>
+		<div class="settingsContainer toggle" style="display: none">
+			<img src="./img/back.png" class="naviButton back"
+				onClick="loadHome()"> Ich bin der Settings Container
+		</div>
+		<div class="resultContainer toggle" style="display: none">
+			<div class="naviContainer">
+				<div class="naviSettings">
+					<img src="./img/check.png" class="naviButton" onClick="stopEngine()">
+				</div>
+				<div class="naviStat">
+					<img src="./img/cross.png" class="naviButton" onClick="stopEngine()">
+				</div>
+			</div>
+			<button onClick="startEngine()" class="startButton">Weiter</button>
+		</div>
+		<div class="colorContainer toggle" style="display: none">
+			<button onClick="loadResults()" class="stopButton">Stop</button>
+		</div>
+	</div>
+
+
+	<div class="debugInfo">
+		<h1>Accelerometer</h1>
+		<table id="accelerometer">
+			<tr>
+				<th>&Delta;X</th>
+				<th>&Delta;Y</th>
+				<th>&Delta;Z</th>
+			</tr>
+			<tr>
+				<td id="accelX">Waiting</td>
+				<td id="accelY">Waiting</td>
+				<td id="accelZ">Waiting</td>
+			</tr>
+			<tr>
+				<td id="Y-Wert">Waiting</td>
+			</tr>
+		</table>
+
+		<div id="location">
+			<h1>Location</h1>
+			<table id="locationData">
+				<tr>
+					<th>Latitude</th>
+					<th>Longitude</th>
+				</tr>
+				<tr>
+					<td id="latitude">Waiting</td>
+					<td id="longitude">Waiting</td>
+				</tr>
+			</table>
+		</div>
+		<div id="errors">
+			<h1>Errors</h1>
+			<p id="errorAccel"></p>
+			<p id="errorLocation"></p>
+		</div>
+
+		<h1>Chart</h1>
+		<div id="chart"></div>
+
+		<div>
+			<h1>List</h1>
+			<button onclick="showAccelChart()">Show Accel Data</button>
+			<button onclick="showLocationList()">Show Location Data</button>
+
+			<p id="list">Empty</p>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+body { //
+	max-width: 540px;
+	width: 100%;
+	margin: 0px;
+	background-color: rgb(255, 249, 240); //
+	border: black 1px solid;
+}
+
+.mainContainer, .naviContainer {
+	width: 100%;
+}
+
+.naviContainer {
+	position: fixed;
+	bottom: 0;
+}
+
+.naviContainer .naviStat, .naviContainer .naviSettings {
+	width: 50%;
+	height: 60px;
+}
+
+.naviContainer .naviStat { //
+	background-color: lightgrey;
+}
+
+.naviContainer .naviSettings {
+	float: right;
+	text-align: right;
+}
+
+.naviButton {
+	height: 40px;
+	margin: 10px;
+}
+
+.naviButton.back {
+	
+}
+
+.mainContainer .homeContainer, .mainContainer .statContainer,
+	.mainContainer .settingsContainer, .mainContainer .resultContainer,
+	.colorContainer {
+	height: 1000px;
+}
+
+.homeContainer button.settingsButton {
+	position: absolute;
+	right: 0;
+}
+
+.homeContainer .selectSlider {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+}
+
+.startButton, .stopButton {
+	position: fixed;
+	color: white;
+	left: 50%;
+	margin-left: -100px;
+	bottom: 0;
+	width: 200px;
+	height: 200px;
+	border-radius: 100%;
+	border: 0px;
+	background-color: #ff9f17;
+}
+
+.stopButton {
+	background-color: rgb(255, 249, 240);
+	color: black;
+}
+
+.colorContainer {
+	background-color: green; //
+	transition: background 1s; //
+	-webkit-transition: background 1s; //
+	-ms-transition: background 1s;
+}
+
+.debugInfo {
+	background-color: yellow;
+	padding-bottom: 100px;
+}
+
+#accelerometer, #locationData {
+	width: 100%;
+}
+
+#accelX, #accelY, #accelZ {
+	width: 33%;
+}
+
+#latitude, #longitude {
+	width: 50%;
+}
+
+#chart {
+	width: 100%;
+	height: 300px;
+}
+
+/*** SLIDER ***/
+
+.flex-control-nav.flex-control-paging{
+	list-style-type:none;
+	padding: 0;
+}
+
+.flex-control-nav li {
+  margin: 0 6px;
+  display: inline-block;
+}
+
+.flex-control-paging li a {
+  width: 11px;
+  height: 11px;
+  display: block;
+  background: #666;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  text-indent: -9999px;
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.flex-control-paging li a.flex-active {
+  background: #000;
+  background: rgba(0, 0, 0, 0.9);
+  cursor: default;
+}
+
+.flex-direction-nav{
+	display:none;
+}
+
+.slides li{
+	  min-height: 250px;
+}

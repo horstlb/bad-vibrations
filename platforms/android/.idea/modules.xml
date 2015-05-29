@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file:///media/PrimaryLinuxHome/juri/workspace/cordova-test/bad-vibrations/platforms/android/CordovaLib/CordovaLib.iml" filepath="/media/PrimaryLinuxHome/juri/workspace/cordova-test/bad-vibrations/platforms/android/CordovaLib/CordovaLib.iml" />
+      <module fileurl="file:///media/PrimaryLinuxHome/juri/workspace/cordova-test/bad-vibrations/platforms/android/android.iml" filepath="/media/PrimaryLinuxHome/juri/workspace/cordova-test/bad-vibrations/platforms/android/android.iml" />
+    </modules>
+  </component>
+</project>
+
