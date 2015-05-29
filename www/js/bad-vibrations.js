@@ -101,6 +101,7 @@ function updateSiteAccel(acceleration) {
         accelElement.querySelector('#accelX').innerHTML = acceleration.x.toFixed(3);
         accelElement.querySelector('#accelY').innerHTML = acceleration.y.toFixed(3);
         accelElement.querySelector('#accelZ').innerHTML = acceleration.z.toFixed(3);
+        
         if(acceleration.y.toFixed(3) > 1){
     	$('.colorContainer').css({"background-color":"red"});
         }else{
