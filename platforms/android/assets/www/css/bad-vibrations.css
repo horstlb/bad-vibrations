@@ -1,8 +1,8 @@
-body { //
-	max-width: 540px;
+body { 
+	//max-width: 540px;
 	width: 100%;
 	margin: 0px;
-	background-color: rgb(255, 249, 240); //
+	background-color: rgb(255, 249, 240); 
 	border: black 1px solid;
 }
 
@@ -74,9 +74,9 @@ body { //
 }
 
 .colorContainer {
-	background-color: green; //
-	transition: background 1s; //
-	-webkit-transition: background 1s; //
+	background-color: green; 
+	transition: background 1s; 
+	-webkit-transition: background 1s; 
 	-ms-transition: background 1s;
 }
 

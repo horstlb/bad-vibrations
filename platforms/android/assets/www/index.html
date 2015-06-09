@@ -35,22 +35,14 @@
 				</div>
 			</div>
 			<div class="selectSlider">
-<div class="flexslider">
-  <ul class="slides">
-    <li>
-      Radl
-    </li>
-    <li>
-      Auto
-    </li>
-    <li>
-      Radl 2
-    </li>
-    <li>
-      Add Item
-    </li>
-  </ul>
-</div>			
+				<div class="flexslider">
+					<ul class="slides">
+						<li>Radl</li>
+						<li>Auto</li>
+						<li>Radl 2</li>
+						<li>Add Item</li>
+					</ul>
+				</div>
 			</div>
 			<button onClick="startEngine()" class="startButton">Start</button>
 		</div>
@@ -65,10 +57,12 @@
 		<div class="resultContainer toggle" style="display: none">
 			<div class="naviContainer">
 				<div class="naviSettings">
-					<img src="./img/check.png" class="naviButton" onClick="stopEngine()">
+					<img src="./img/check.png" class="naviButton"
+						onClick="stopEngine()">
 				</div>
 				<div class="naviStat">
-					<img src="./img/cross.png" class="naviButton" onClick="stopEngine()">
+					<img src="./img/cross.png" class="naviButton"
+						onClick="stopEngine()">
 				</div>
 			</div>
 			<button onClick="startEngine()" class="startButton">Weiter</button>
@@ -82,6 +76,7 @@
 	<div class="debugInfo">
 		<h1>Accelerometer</h1>
 		<table id="accelerometer">
+
 			<tr>
 				<th>&Delta;X</th>
 				<th>&Delta;Y</th>
@@ -94,6 +89,12 @@
 			</tr>
 			<tr>
 				<td id="Y-Wert">Waiting</td>
+			</tr>
+			<tr>
+				<td id="sum"></td>
+			</tr>
+			<tr>
+				<td id="queuelength"></td>
 			</tr>
 		</table>
 
