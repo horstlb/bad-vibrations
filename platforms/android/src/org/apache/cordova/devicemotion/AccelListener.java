@@ -183,7 +183,7 @@ public class AccelListener extends CordovaPlugin implements SensorEventListener 
             this.sensorManager.unregisterListener(this);
         }
         this.setStatus(AccelListener.STOPPED);
-        this.accuracy = SensorManager.SENSOR_STATUS_UNRELIABLE;
+        this.accuracy = SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM;
     }
 
     /**

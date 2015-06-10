@@ -11,8 +11,6 @@ var prevAccel = null;
 var deltaAccelList = [];
 // List containing the location data
 var locationList = [];
-// Tracking start time
-var trackingStartTime = null;
 
 
 // DEBUG: Accelereation value plot
@@ -60,26 +58,25 @@ function doOnOrientationChange() {
 
 function onDeviceReady() {
     initChart();
-    startWatch();
 }
 
 /* Acceleration handlers */
 function startAccelWatch() {
     var accelOptions = { frequency: 150 };
     accelWatchID = navigator.accelerometer.watchAcceleration(onAccelSuccess, onAccelError, accelOptions);
-    trackingStartTime = new Date().getTime();
+    queueSum = 0;
+    setError('errorAccel', 'Starting Accelerometer');
 }
 
 function stopAccelWatch() {
     if (accelWatchID) {
+        setError('errorAccel', 'Stopping Accelerometer');
         navigator.accelerometer.clearWatch(accelWatchID);
         accelWatchID = null;
-        trackingStartTime = null;
     }
 }
 
 function onAccelSuccess(acceleration) {
-    setError('errorAccel', '');
     var deltaAccel = calculateDeltaAccel(acceleration);
     if (deltaAccel) {
         absSum = sumOfAbsolute (deltaAccel);
@@ -157,7 +154,6 @@ function showAccelList() {
 
 /* Location handlers */
 function onGeolocationSuccess(position) {
-    setError('errorLocation', '');
     locationList.push(new LocationData(position.coords.latitude, position.coords.longitude, position.timestamp));
     var locationElement = document.querySelector('#locationData');
     locationElement.querySelector('#latitude').innerHTML = position.coords.latitude;
@@ -209,6 +205,19 @@ function sumOfAbsolute(accelDataPoint) {
     return Math.abs(accelDataPoint.x) + Math.abs(accelDataPoint.y) + Math.abs(accelDataPoint.z);
 }
 
+function resetValues() {
+    prevAccel = null;
+    queueSum = 0;
+    queue = [];
+    deltaAccelList = [];
+    locationList = [];
+    accelDataSeries = [];
+
+    setError('errorAccel', 'Values reset');
+    setError('errorLocation', 'Values reset');
+
+}
+
 /* Chart */
 function initChart() {
     accelPlot = $.jqplot ('chart', [[0, 0]], {
@@ -236,7 +245,7 @@ function updateAccelChart() {
 }
 
 function addToChart(timestamp, absSum) {
-    accelDataSeries.push([(timestamp - trackingStartTime) / 1000, absSum]);
+    accelDataSeries.push([timestamp, absSum]);
     updateAccelChart();
 }
 
@@ -247,12 +256,15 @@ function toggleOthers(showthis){
 
 function startEngine(){
 	toggleOthers('.colorContainer');
+	startWatch();
 	//TODO
 }
 
 function stopEngine(){
 	toggleOthers('.homeContainer');
+	stopWatch();
 	//TODO
+	resetValues();
 }
 
 function loadStat(){
@@ -271,5 +283,6 @@ function loadSettings(){
 }
 function loadResults(){
 	toggleOthers('.resultContainer');
+	stopWatch();
 	//TODO
 }
