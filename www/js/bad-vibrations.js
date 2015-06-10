@@ -108,13 +108,13 @@ function updateSiteAccel(acceleration) {
         accelElement.querySelector('#accelY').innerHTML = acceleration.y.toFixed(3);
         accelElement.querySelector('#accelZ').innerHTML = acceleration.z.toFixed(3);
         
-        queue.push(acceleration.y.toFixed(3));
+        queue.push(acceleration.y);
         
         if(queue.length >= queueSize){
         	var firstElement = queue.shift(); // fifo
         }
         var sum = calculateQueue(queue);
-        accelElement.querySelector('#sum').innerHTML = sum;
+        accelElement.querySelector('#sum').innerHTML = sum.toFixed(3);
         accelElement.querySelector('#queuelength').innerHTML = queue.length;
         if(sum > queueTop){
         	$('.colorContainer').css({"background-color":"red"});
@@ -129,7 +129,7 @@ function updateSiteAccel(acceleration) {
 function calculateQueue(queue){
 	var sum = 0;
 	for(var i = 0; i < queue.length; i++){
-		sum+=Math.abs(parseInt(queue[i]));
+		sum+=Math.abs(queue[i]);
 	}
 	return sum;
 }
