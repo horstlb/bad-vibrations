@@ -93,6 +93,8 @@ function onAccelSuccess(acceleration) {
                 addToChart(deltaAccel.timestamp - trackingStartTime, absSum);
         }
     }
+
+    updateQueue(deltaAccel);
     if (debugOn)
         updateSiteAccel(deltaAccel);
 }
@@ -125,7 +127,14 @@ function updateSiteAccel(acceleration) {
         accelElement.querySelector('#accelX').innerHTML = acceleration.x.toFixed(3);
         accelElement.querySelector('#accelY').innerHTML = acceleration.y.toFixed(3);
         accelElement.querySelector('#accelZ').innerHTML = acceleration.z.toFixed(3);
-        
+
+        accelElement.querySelector('#sum').innerHTML = queueSum.toFixed(3);
+        accelElement.querySelector('#queuelength').innerHTML = queue.length;
+    }
+}
+
+function updateQueue(acceleration) {
+    if (acceleration) {
         queue.push(Math.abs(acceleration.y));
 
         if(queue.length >= queueSize){
@@ -133,8 +142,6 @@ function updateSiteAccel(acceleration) {
         }
         queueSum += Math.abs(acceleration.y);
 
-        accelElement.querySelector('#sum').innerHTML = queueSum.toFixed(3);
-        accelElement.querySelector('#queuelength').innerHTML = queue.length;
         if(queueSum > queueTop){
         	$('.colorContainer').css({"background-color":"red"});
         }else if((sum >= queueMiddle) && (sum <= queueTop)){
