@@ -10,7 +10,10 @@ var prevAccel = null;
 var deltaAccelList = [];
 var locationList = [];
 var accelPlot = null;
+var trackingStartTime = null;
 
+
+var accelDataSeries = [];
 var potHoleTreshold = 1;
 
 var queue = [];
@@ -46,7 +49,7 @@ function onLoad() {
 }
 
 function doOnOrientationChange() {
-    setTimeout(showAccelChart, 500);
+    setTimeout(updateAccelChart, 500);
 }
 
 function onDeviceReady() {
@@ -58,12 +61,14 @@ function onDeviceReady() {
 function startAccelWatch() {
     var accelOptions = { frequency: 150 };
     accelWatchID = navigator.accelerometer.watchAcceleration(onAccelSuccess, onAccelError, accelOptions);
+    trackingStartTime = new Date().getTime();
 }
 
 function stopAccelWatch() {
     if (accelWatchID) {
         navigator.accelerometer.clearWatch(accelWatchID);
         accelWatchID = null;
+        trackingStartTime = null;
     }
 }
 
@@ -71,9 +76,11 @@ function onAccelSuccess(acceleration) {
     setError('errorAccel', '');
     var deltaAccel = calculateDeltaAccel(acceleration);
     if (deltaAccel) {
-        if (sumOfAbsolute (deltaAccel) > potHoleTreshold) {
+        absSum = sumOfAbsolute (deltaAccel);
+        if (absSum > potHoleTreshold) {
             deltaAccelList.push(deltaAccel);
-            showAccelChart();
+
+            addToChart(deltaAccel.timestamp, absSum);
         }
     }
     updateSiteAccel(deltaAccel);
@@ -214,21 +221,16 @@ function initChart() {
     });
 }
 
-function showAccelChart() {
-    var accelDataSeries = [];
+function updateAccelChart() {
+    accelPlot.series[0].data = accelDataSeries;
+    accelPlot.resetAxesScale();
 
-    if (deltaAccelList.length > 0) {
-        var minTimeStamp = deltaAccelList[0].timestamp;
-        for (var i = 0; i < deltaAccelList.length; i++) {
-            var currentDataPoint = deltaAccelList[i];
-            accelDataSeries.push([(currentDataPoint.timestamp - minTimeStamp) / 1000, sumOfAbsolute(currentDataPoint)]);
-        }
+    accelPlot.replot();
+}
 
-        accelPlot.series[0].data = accelDataSeries;
-        accelPlot.resetAxesScale();
-
-        accelPlot.replot();
-    }
+function addToChart(timestamp, absSum) {
+    accelDataSeries.push([(timestamp - trackingStartTime) / 1000, absSum]);
+    updateAccelChart();
 }
 
 function toggleOthers(showthis){
