@@ -24,6 +24,7 @@ var queue = [];
 var queueSize = 20; // Größe des Zwischenspeichers (fifo-queue) -> je kleiner, umso schneller die Transitions...
 var queueTop = 13; //obere Intervallgrenze - muss geändert werden, falls queueSize geändert wurde
 var queueMiddle = 8; // untere Intervallgrenze - muss geändert werden, falls queueSize geändert wurde
+var queueSum = 0;
 
 
 /* Domain classes */
@@ -119,15 +120,16 @@ function updateSiteAccel(acceleration) {
         accelElement.querySelector('#accelY').innerHTML = acceleration.y.toFixed(3);
         accelElement.querySelector('#accelZ').innerHTML = acceleration.z.toFixed(3);
         
-        queue.push(acceleration.y);
-        
+        queue.push(Math.abs(acceleration.y));
+
         if(queue.length >= queueSize){
-        	var firstElement = queue.shift(); // fifo
+            queueSum = queueSum - queue.shift(); // fifo
         }
-        var sum = calculateQueue(queue);
-        accelElement.querySelector('#sum').innerHTML = sum.toFixed(3);
+        queueSum += Math.abs(acceleration.y);
+
+        accelElement.querySelector('#sum').innerHTML = queueSum.toFixed(3);
         accelElement.querySelector('#queuelength').innerHTML = queue.length;
-        if(sum > queueTop){
+        if(queueSum > queueTop){
         	$('.colorContainer').css({"background-color":"red"});
         }else if((sum >= queueMiddle) && (sum <= queueTop)){
         	$('.colorContainer').css({"background-color":"orange"});
@@ -135,14 +137,6 @@ function updateSiteAccel(acceleration) {
         	$('.colorContainer').css({"background-color":"green"});
         }
     }
-}
-
-function calculateQueue(queue){
-	var sum = 0;
-	for(var i = 0; i < queue.length; i++){
-		sum+=Math.abs(queue[i]);
-	}
-	return sum;
 }
 
 function showAccelList() {
