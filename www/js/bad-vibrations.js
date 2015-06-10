@@ -21,6 +21,8 @@ var accelPlot = null;
 var accelDataSeries = [];
 // DEBUG: Threshold for new points on the plot
 var potHoleTreshold = 1;
+// DEBUG: Is debug mode on?
+var debugOn = false;
 
 var queue = [];
 var queueSize = 20; // Größe des Zwischenspeichers (fifo-queue) -> je kleiner, umso schneller die Transitions...
@@ -87,10 +89,12 @@ function onAccelSuccess(acceleration) {
             deltaAccelList.push(deltaAccel);
 
             // DEBUG: Add absolute sum of axis to diagram
-            addToChart(deltaAccel.timestamp, absSum);
+            if(debugOn)
+                addToChart(deltaAccel.timestamp - trackingStartTime, absSum);
         }
     }
-    updateSiteAccel(deltaAccel);
+    if (debugOn)
+        updateSiteAccel(deltaAccel);
 }
 
 function onAccelError() {
@@ -151,9 +155,11 @@ function showAccelList() {
 /* Location handlers */
 function onGeolocationSuccess(position) {
     locationList.push(new LocationData(position.coords.latitude, position.coords.longitude, position.timestamp));
-    var locationElement = document.querySelector('#locationData');
-    locationElement.querySelector('#latitude').innerHTML = position.coords.latitude;
-    locationElement.querySelector('#longitude').innerHTML = position.coords.longitude;
+    if (debugOn) {
+        var locationElement = document.querySelector('#locationData');
+        locationElement.querySelector('#latitude').innerHTML = position.coords.latitude;
+        locationElement.querySelector('#longitude').innerHTML = position.coords.longitude;
+    }
 }
 
 function onLocationError() {
@@ -246,6 +252,17 @@ function updateAccelChart() {
 function addToChart(timestamp, absSum) {
     accelDataSeries.push([timestamp, absSum]);
     updateAccelChart();
+}
+
+function toggleDebug() {
+    if (debugOn) {
+        $('.debugInfo').hide();
+        debugOn = false;
+    } else {
+        $('.debugInfo').show();
+        debugOn = true;
+    }
+
 }
 
 function toggleOthers(showthis){
