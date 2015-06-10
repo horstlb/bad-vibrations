@@ -5,15 +5,21 @@ $(window).load(function() {
   });
 });
 
-
+// Helper for acceleration difference calculation
 var prevAccel = null;
+// List containing the acceleration data
 var deltaAccelList = [];
+// List containing the location data
 var locationList = [];
-var accelPlot = null;
+// Tracking start time
 var trackingStartTime = null;
 
 
+// DEBUG: Accelereation value plot
+var accelPlot = null;
+// DEBUG: Values for the diagram
 var accelDataSeries = [];
+// DEBUG: Threshold for new points on the plot
 var potHoleTreshold = 1;
 
 var queue = [];
@@ -80,6 +86,7 @@ function onAccelSuccess(acceleration) {
         if (absSum > potHoleTreshold) {
             deltaAccelList.push(deltaAccel);
 
+            // DEBUG: Add absolute sum of axis to diagram
             addToChart(deltaAccel.timestamp, absSum);
         }
     }
