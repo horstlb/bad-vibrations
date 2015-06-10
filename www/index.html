@@ -27,15 +27,6 @@
 	<div class="mainContainer">
 
 		<div class="homeContainer toggle">
-			<div class="naviContainer">
-				<div class="naviSettings">
-					<img src="./img/cog.png" class="naviButton"
-						onClick="loadSettings()">
-				</div>
-				<div class="naviStat">
-					<img src="./img/stats.png" class="naviButton" onClick="loadStat()">
-				</div>
-			</div>
 			<div class="selectSlider">
 				<div class="flexslider">
 					<ul class="slides">
@@ -46,7 +37,16 @@
 					</ul>
 				</div>
 			</div>
-			<button onClick="startEngine()" class="startButton">Start</button>
+
+			<div class="naviContainer">
+				<img src="./img/stats.png" class="naviStat naviButton" onClick="loadStat()">
+				<img src="./img/cog.png" class="naviSettings naviButton" onClick="loadSettings()">
+				<div class="naviActionButton">
+					<button onClick="startEngine()" class="startButton">Start</button>
+				</div>
+			</div>
+
+
 		</div>
 		<div class="statContainer toggle" style="display: none">
 			<img src="./img/back.png" class="naviButton back"
@@ -56,21 +56,23 @@
 			<img src="./img/back.png" class="naviButton back"
 				onClick="loadHome()"> Ich bin der Settings Container
 		</div>
+
 		<div class="resultContainer toggle" style="display: none">
 			<div class="naviContainer">
-				<div class="naviSettings">
-					<img src="./img/check.png" class="naviButton"
-						onClick="stopEngine()">
-				</div>
-				<div class="naviStat">
-					<img src="./img/cross.png" class="naviButton"
-						onClick="stopEngine()">
+				<img src="./img/check.png" class="naviButton naviSettings" onClick="stopEngine()">
+				<img src="./img/cross.png" class="naviButton naviStat" onClick="stopEngine()">
+				<div class="naviActionButton">
+					<button onClick="startEngine()" class="startButton">Weiter</button>
 				</div>
 			</div>
-			<button onClick="startEngine()" class="startButton">Weiter</button>
 		</div>
+
 		<div class="colorContainer toggle" style="display: none">
-			<button onClick="loadResults()" class="stopButton">Stop</button>
+			<div class="naviContainer">
+				<div class="naviActionButton">
+					<button onClick="loadResults()" class="stopButton">Stop</button>
+				</div>
+			</div>
 		</div>
 	</div>
 

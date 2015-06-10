@@ -3,50 +3,46 @@ body {
 	width: 100%;
 	margin: 0px;
 	background-color: rgb(255, 249, 240); 
-	border: black 1px solid;
 }
 
-.mainContainer, .naviContainer {
-	width: 100%;
+html, body {
+	height: 100%;
+}
+
+.mainContainer {
+	height:100%;
+	min-height:100%;
 }
 
 .naviContainer {
-	position: fixed;
 	bottom: 0;
+	position: absolute;
+	width: 100%;
 }
 
-.naviContainer .naviStat, .naviContainer .naviSettings {
-	width: 50%;
-	height: 60px;
-}
-
-.naviContainer .naviStat { //
-	background-color: lightgrey;
+.naviContainer .naviActionButton {
+	text-align: center;
+	z-index: 10;
+	width: 100%;
 }
 
 .naviContainer .naviSettings {
-	float: right;
-	text-align: right;
+	right: 0;
+}
+
+.naviContainer .naviStat {
+	left: 0;
 }
 
 .naviButton {
 	height: 40px;
 	margin: 10px;
+	position: absolute;
+	bottom: 0;
 }
 
 .naviButton.back {
 	
-}
-
-.mainContainer .homeContainer, .mainContainer .statContainer,
-	.mainContainer .settingsContainer, .mainContainer .resultContainer,
-	.colorContainer {
-	height: 1000px;
-}
-
-.homeContainer button.settingsButton {
-	position: absolute;
-	right: 0;
 }
 
 .homeContainer .selectSlider {
@@ -56,11 +52,7 @@ body {
 }
 
 .startButton, .stopButton {
-	position: fixed;
 	color: white;
-	left: 50%;
-	margin-left: -100px;
-	bottom: 0;
 	width: 200px;
 	height: 200px;
 	border-radius: 100%;
@@ -78,6 +70,7 @@ body {
 	transition: background 1s; 
 	-webkit-transition: background 1s; 
 	-ms-transition: background 1s;
+	height: 100%;
 }
 
 .debugInfo {
