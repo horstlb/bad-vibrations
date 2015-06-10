@@ -134,11 +134,25 @@ html, body {
 	display:none;
 }
 
-.slides li{
-	  min-height: 250px;
-}
-
 .flexslider {
 	background: none;
 	border: none;
+}
+
+.fa,
+.slides h1 {
+	margin: auto;
+	color: #2b2b2b;
+}
+
+.fa-4x {
+	margin: 5px;
+}
+
+.fa-5x {
+	margin: 30px;
+}
+
+.fa-inverse {
+	color: #cbcbcb;
 }
