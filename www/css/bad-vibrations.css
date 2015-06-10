@@ -144,3 +144,8 @@ body {
 .slides li{
 	  min-height: 250px;
 }
+
+.flexslider {
+	background: none;
+	border: none;
+}
