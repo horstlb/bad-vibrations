@@ -58,6 +58,8 @@ html, body {
 	border-radius: 100%;
 	border: 0px;
 	background-color: #ff9f17;
+	font-size: 2em;
+	font-weight: bold;
 }
 
 .stopButton {
