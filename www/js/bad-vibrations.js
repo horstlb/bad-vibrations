@@ -11,6 +11,8 @@ var prevAccel = null;
 var deltaAccelList = [];
 // List containing the location data
 var locationList = [];
+// Time the current tracking started
+var trackingStartTime = null;
 
 
 // DEBUG: Accelereation value plot
@@ -183,6 +185,8 @@ function showLocationList() {
 function startWatch() {
     startAccelWatch();
     startLocationWatch();
+    if (trackingStartTime == null)
+        trackingStartTime = new Date().getTime();
 }
 
 function stopWatch() {
@@ -201,6 +205,7 @@ function sumOfAbsolute(accelDataPoint) {
 
 function resetValues() {
     prevAccel = null;
+    trackingStartTime = null;
     queueSum = 0;
     queue = [];
     deltaAccelList = [];
